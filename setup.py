@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name             = 'interpolate-surface-with-sphere',
-    version          = '0.1.0',
+    version          = '0.1.1',
     description      = 'Resample a surface mesh to have 81,920 triangles.',
     author           = 'Jennings Zhang',
     author_email     = 'Jennings.Zhang@childrens.harvard.edu',

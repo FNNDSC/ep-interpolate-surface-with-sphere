@@ -24,6 +24,8 @@ parser.add_argument('-p', '--pattern', default='**/*.obj',
                     help='pattern for file names to include')
 parser.add_argument('-q', '--quiet', action='store_true',
                     help='disable status messages')
+parser.add_argument('--no-fail', action='store_true', dest='no_fail',
+                    help='do not produce non-zero exit status on failures')
 
 
 def isws(surface: Path, output: Path, side: SideStr) -> None:
@@ -83,6 +85,8 @@ def main(options: Namespace, inputdir: Path, outputdir: Path):
         for mc_surface, output in mapper:
             results.append(pool.submit(isws, mc_surface, output, options.side))
 
+    if options.no_fail:
+        return
     for future in results:
         e = future.exception()
         if e is not None:
